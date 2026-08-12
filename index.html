@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <audio id="backgroundMusic" loop preload="auto">
+    <source src="assets/audio/vinculo.mp3" type="audio/mpeg" />
+  </audio>
+
+  <button class="music-fab" id="musicFab" type="button" aria-label="Pausar o reanudar música" aria-pressed="false">
+    <span class="music-fab-icon">♫</span>
+    <span class="music-fab-label">Vínculo · Enjambre</span>
+  </button>
   <div class="progress" aria-hidden="true"><div id="progressBar"></div></div>
 
   <main>
@@ -34,7 +42,7 @@
         <h1>Pandita...</h1>
         <p>Tengo algo que quiero preguntarte.</p>
         <p>Pero antes quiero contarte una historia.</p>
-        <button class="btn primary" data-scroll="#secundaria">Comenzar ♡</button>
+        <button class="btn primary" id="startBtn" data-scroll="#secundaria">Comenzar ♡</button>
       </div>
     </section>
 
@@ -264,21 +272,6 @@
       </div>
     </section>
 
-    <section class="scene song-scene dark" id="cancion">
-      <div class="content centered narrow">
-        <div class="music-card reveal">
-          <span class="music-note">♫</span>
-          <p class="eyebrow">Nuestra canción en esta historia</p>
-          <h2>La Diferencia</h2>
-          <p>Enjambre</p>
-          <button class="btn secondary" id="listenBtn">▶ Escuchar</button>
-        </div>
-        <p class="reveal">Me la dedicaste tú.</p>
-        <p class="large-serif reveal">Desde entonces la escucho diferente.</p>
-        <p class="music-note-small">El botón abre una búsqueda de la canción; puedes cambiar el enlace en <code>script.js</code>.</p>
-      </div>
-    </section>
-
     <section class="scene recap-scene" id="recap">
       <div class="content centered narrow">
         <div class="recap-lines">
@@ -294,7 +287,7 @@
       </div>
     </section>
 
-    <section class="scene proposal-scene dark" id="pregunta">
+    <section class="scene proposal-scene dark" id="pregunta" data-music-volume="low">
       <div class="content centered narrow">
         <div class="final-branch" aria-hidden="true">🌿</div>
         <p class="reveal">Pandita...</p>
@@ -313,7 +306,7 @@
       </div>
     </section>
 
-    <section class="scene yes-scene" id="si" hidden>
+    <section class="scene yes-scene" id="si" hidden data-music-volume="normal">
       <div class="celebration" id="celebration" aria-hidden="true"></div>
       <div class="content centered narrow">
         <h1>Entonces sí valió la pena esperar.</h1>

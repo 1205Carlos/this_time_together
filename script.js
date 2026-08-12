@@ -77,12 +77,111 @@ $("#psBtn").addEventListener("click", () => {
   ps.hidden = !ps.hidden;
 });
 
-// Sustituye esta URL por la dirección específica de Spotify/YouTube/Apple Music
-// que quieras usar para "La Diferencia" de Enjambre.
-const SONG_URL = "https://www.youtube.com/results?search_query=Enjambre+La+Diferencia";
-$("#listenBtn").addEventListener("click", () => {
-  window.open(SONG_URL, "_blank", "noopener,noreferrer");
+
+
+// Música de fondo.
+// Coloca tu archivo en: assets/audio/vinculo.mp3
+const music = $("#backgroundMusic");
+const musicFab = $("#musicFab");
+const startBtn = $("#startBtn");
+
+const MUSIC_VOLUME_NORMAL = 0.34;
+const MUSIC_VOLUME_LOW = 0.16;
+let musicStarted = false;
+let targetVolume = MUSIC_VOLUME_NORMAL;
+let volumeAnimationFrame = null;
+
+music.volume = 0;
+
+function fadeMusicTo(volume, duration = 1200) {
+  if (!musicStarted || music.paused) return;
+  if (volumeAnimationFrame) cancelAnimationFrame(volumeAnimationFrame);
+
+  const initial = music.volume;
+  const delta = volume - initial;
+  const start = performance.now();
+
+  const step = (now) => {
+    const progress = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    music.volume = Math.max(0, Math.min(1, initial + delta * eased));
+    if (progress < 1) volumeAnimationFrame = requestAnimationFrame(step);
+    else volumeAnimationFrame = null;
+  };
+
+  volumeAnimationFrame = requestAnimationFrame(step);
+}
+
+async function startBackgroundMusic() {
+  if (musicStarted) return;
+  try {
+    music.volume = 0;
+    await music.play();
+    musicStarted = true;
+    musicFab.classList.add("ready");
+    musicFab.classList.remove("paused");
+    musicFab.setAttribute("aria-pressed", "true");
+    fadeMusicTo(targetVolume, 2600);
+  } catch (error) {
+    console.info("La música no pudo iniciarse todavía:", error);
+  }
+}
+
+startBtn?.addEventListener("click", startBackgroundMusic);
+
+musicFab?.addEventListener("click", async () => {
+  if (!musicStarted) {
+    await startBackgroundMusic();
+    return;
+  }
+
+  if (music.paused) {
+    try {
+      await music.play();
+      musicFab.classList.remove("paused");
+      musicFab.setAttribute("aria-pressed", "true");
+      music.volume = 0;
+      fadeMusicTo(targetVolume, 900);
+    } catch (error) {
+      console.info("No se pudo reanudar la música:", error);
+    }
+  } else {
+    const initial = music.volume;
+    const start = performance.now();
+    const duration = 500;
+
+    const fadeOut = (now) => {
+      const progress = Math.min(1, (now - start) / duration);
+      music.volume = initial * (1 - progress);
+      if (progress < 1) requestAnimationFrame(fadeOut);
+      else {
+        music.pause();
+        musicFab.classList.add("paused");
+        musicFab.setAttribute("aria-pressed", "false");
+      }
+    };
+
+    requestAnimationFrame(fadeOut);
+  }
 });
+
+const musicVolumeObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+
+    if (entry.target.dataset.musicVolume === "low") {
+      targetVolume = MUSIC_VOLUME_LOW;
+      fadeMusicTo(targetVolume, 1600);
+    }
+
+    if (entry.target.dataset.musicVolume === "normal") {
+      targetVolume = MUSIC_VOLUME_NORMAL;
+      fadeMusicTo(targetVolume, 1600);
+    }
+  });
+}, { threshold: 0.45 });
+
+$$("[data-music-volume]").forEach(section => musicVolumeObserver.observe(section));
 
 // Accesibilidad básica: cerrar carta con Escape.
 document.addEventListener("keydown", e => {

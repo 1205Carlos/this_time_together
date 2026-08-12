@@ -26,9 +26,25 @@ Proyecto web romántico, mobile-first, construido para contar una historia y ter
 
 Si falta alguna, la página muestra un placeholder automático.
 
-## Canción
+## Música de fondo
 
-En `script.js`, cambia la constante `SONG_URL` por el enlace legítimo que quieras usar para "La Diferencia" de Enjambre.
+La página está preparada para reproducir `Vínculo` de Enjambre como música de fondo.
+
+Coloca tu archivo legalmente obtenido en:
+
+`assets/audio/vinculo.mp3`
+
+La música:
+- inicia al pulsar `Comenzar ♡`;
+- entra con fade-in;
+- puede pausarse/reanudarse desde el botón flotante `♫`;
+- baja de volumen al llegar a `¿Quieres ser mi novia?`;
+- recupera el volumen normal si se pulsa `Sí, quiero`.
+
+El volumen se controla en `script.js` mediante:
+- `MUSIC_VOLUME_NORMAL`
+- `MUSIC_VOLUME_LOW`
+
 
 ## Publicación
 
