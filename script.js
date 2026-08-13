@@ -187,3 +187,38 @@ $$("[data-music-volume]").forEach(section => musicVolumeObserver.observe(section
 document.addEventListener("keydown", e => {
   if(e.key === "Escape" && !letterOverlay.hidden) closeLetter();
 });
+
+// Sección 7: toca la foto superior para apartarla y mostrar la siguiente.
+const julioStack = $("#julioPhotoStack");
+const julioTapHint = $("#julioTapHint");
+
+if (julioStack) {
+  const julioPhotos = $$(".tap-photo", julioStack);
+  let julioCurrent = 0;
+
+  function updateJulioStack() {
+    julioPhotos.forEach((photo, index) => {
+      photo.classList.toggle("is-top", index === julioCurrent);
+    });
+    if (julioCurrent >= julioPhotos.length - 1) {
+      julioStack.classList.add("finished");
+      if (julioTapHint) julioTapHint.textContent = "última foto ♡";
+    }
+  }
+
+  function showNextJulioPhoto() {
+    if (julioCurrent >= julioPhotos.length - 1) return;
+    julioPhotos[julioCurrent].classList.add("is-gone");
+    julioCurrent += 1;
+    updateJulioStack();
+  }
+
+  julioPhotos.forEach((photo, index) => {
+    photo.addEventListener("click", () => {
+      if (index === julioCurrent) showNextJulioPhoto();
+    });
+  });
+
+  julioTapHint?.addEventListener("click", showNextJulioPhoto);
+  updateJulioStack();
+}

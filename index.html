@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
   <meta name="theme-color" content="#283618" />
-  <title>Esta vez, juntos ♡</title>
+  <title>Esta vez... juntos ♡</title>
   <meta name="description" content="Una historia que hizo algunas pausas, pero sigui&oacute; encontrando el camino de regreso." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,15 +113,25 @@
     <section class="scene collage-scene" id="julio3">
       <div class="content">
         <p class="date centered reveal">03 · 07 · 2026</p>
-        <div class="photo-stack">
-          <figure class="photo-card tilt-left reveal"><img src="assets/julio-01.jpg" alt="Reencuentro julio 2026" onerror="this.parentElement.classList.add('missing')"><figcaption>Volvimos a hablar.</figcaption></figure>
-          <figure class="photo-card tilt-right reveal"><img src="assets/julio-02.jpg" alt="Reencuentro julio 2026" onerror="this.parentElement.classList.add('missing')"><figcaption>No planeamos vernos.</figcaption></figure>
-          <figure class="photo-card reveal"><img src="assets/julio-03.jpg" alt="Reencuentro julio 2026" onerror="this.parentElement.classList.add('missing')"><figcaption>Simplemente se dio.</figcaption></figure>
+        <div class="photo-stack tap-stack reveal" id="julioPhotoStack" aria-label="Fotos del reencuentro. Toca la foto para ver la siguiente.">
+          <figure class="photo-card tap-photo is-top" data-index="0">
+            <img src="assets/julio-01.jpg" alt="Reencuentro julio 2026" onerror="this.parentElement.classList.add('missing')">
+            <figcaption>Volvimos a hablar.</figcaption>
+          </figure>
+          <figure class="photo-card tap-photo" data-index="1">
+            <img src="assets/julio-02.jpg" alt="Reencuentro julio 2026" onerror="this.parentElement.classList.add('missing')">
+            <figcaption>No planeamos vernos.</figcaption>
+          </figure>
+          <figure class="photo-card tap-photo" data-index="2">
+            <img src="assets/julio-03.jpg" alt="Reencuentro julio 2026" onerror="this.parentElement.classList.add('missing')">
+            <figcaption>Simplemente se dio.</figcaption>
+          </figure>
+          <button class="tap-hint" type="button" id="julioTapHint">toca la foto ♡</button>
         </div>
         <div class="centered narrow">
-          <p class="reveal">As&iacute; que lo hicimos.</p>
-          <h2 class="reveal">Y s&iacute;...</h2>
-          <p class="large-serif reveal">todav&iacute;a nos gust&aacute;bamos...</p>
+          <p class="reveal">Así que lo hicimos.</p>
+          <h2 class="reveal">Y sí...</h2>
+          <p class="large-serif reveal">todavía nos gustábamos.</p>
         </div>
       </div>
     </section>
@@ -310,9 +320,9 @@
       <div class="celebration" id="celebration" aria-hidden="true"></div>
       <div class="content centered narrow">
         <h1>Entonces s&iacute; vali&oacute; la pena esperar.</h1>
-        <p>Desde aquella secundaria...</p>
+        <p>Desde aquella vez que nos conocimos por vez primera...</p>
         <p>hasta aqu&iacute;.</p>
-        <h2>Esta vez, juntos. ♡</h2>
+        <h2>Esta vez... juntos. ♡</h2>
         <button class="envelope" id="letterBtn" aria-label="Abrir carta">
           <span class="envelope-flap"></span>
           <span class="seal">♡</span>
@@ -333,7 +343,7 @@
         <p>Quiero seguir teniendo conversaciones bonitas, conversaciones inc&oacute;modas y todas las que est&eacute;n en medio.</p>
         <p>Quiero seguir construyendo contigo, sin prisa, pero con intenci&oacute;n.</p>
         <p>Y quiero ver hasta d&oacute;nde puede llegar esta historia que comenz&oacute; hace tantos a&ntilde;os.</p>
-        <p class="large-serif">Esta vez, juntos.</p>
+        <p class="large-serif">Esta vez... juntos.</p>
         <p class="signature">Tu lobo domesticado 🐺</p>
         <button class="ps" id="psBtn">PD</button>
         <p class="ps-text" id="psText" hidden>La tabla de quesos fue s&oacute;lo el comienzo. 🧀</p>

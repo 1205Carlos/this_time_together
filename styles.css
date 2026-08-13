@@ -188,3 +188,16 @@ p{font-size:clamp(1rem,3.7vw,1.18rem);line-height:1.75}
 .music-fab.paused{background:rgba(85,107,47,.88)}
 .music-fab-icon{flex:0 0 auto;width:18px;text-align:center;font-size:1.05rem;line-height:1}
 .music-fab-label{white-space:nowrap;font-size:.72rem;letter-spacing:.02em;opacity:.9}
+
+/* Sección 7 · pila de fotos interactiva */
+#julio3 .tap-stack{position:relative;width:min(84vw,380px);height:560px;min-height:0;margin:48px auto 72px;display:block;perspective:1000px}
+#julio3 .tap-photo{position:absolute;inset:0;width:100%;margin:0;cursor:pointer;user-select:none;-webkit-user-select:none;touch-action:manipulation;transition:transform .55s cubic-bezier(.22,.8,.25,1),opacity .45s ease,filter .45s ease;transform-origin:50% 92%}
+#julio3 .tap-photo:nth-of-type(1){z-index:3;transform:translate(0,0) rotate(-1deg)}
+#julio3 .tap-photo:nth-of-type(2){z-index:2;transform:translate(7px,12px) rotate(2.2deg) scale(.985)}
+#julio3 .tap-photo:nth-of-type(3){z-index:1;transform:translate(-6px,24px) rotate(-2.2deg) scale(.97)}
+#julio3 .tap-photo.is-gone{transform:translate(115%,-8%) rotate(12deg) scale(.94)!important;opacity:0;pointer-events:none}
+#julio3 .tap-photo:not(.is-top):not(.is-gone){filter:saturate(.92) brightness(.98)}
+#julio3 .tap-hint{position:absolute;z-index:10;left:50%;bottom:-48px;transform:translateX(-50%);border:0;background:transparent;color:var(--olive);font-family:var(--sans);font-size:.78rem;letter-spacing:.05em;cursor:pointer;white-space:nowrap;padding:10px 14px}
+#julio3 .tap-hint::after{content:"";display:block;width:28px;height:1px;margin:6px auto 0;background:currentColor;opacity:.45}
+#julio3 .tap-stack.finished .tap-hint{opacity:.45}
+@media(max-width:480px){#julio3 .tap-stack{width:min(82vw,340px);height:505px}}
