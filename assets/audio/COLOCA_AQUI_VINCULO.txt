@@ -1,6 +1,0 @@
-Coloca aquí tu archivo de audio y nómbralo exactamente:
-
-vinculo.mp3
-
-Ruta final:
-assets/audio/vinculo.mp3
