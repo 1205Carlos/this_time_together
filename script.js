@@ -80,7 +80,7 @@ $("#psBtn").addEventListener("click", () => {
 
 
 // Música de fondo.
-// Coloca tu archivo en: assets/audio/vinculo.mp3
+// Coloca tu archivo en: assets/audio/es_verdad.mp3
 const music = $("#backgroundMusic");
 const musicFab = $("#musicFab");
 const startBtn = $("#startBtn");
